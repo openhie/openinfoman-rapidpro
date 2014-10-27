@@ -79,10 +79,6 @@ let $output :=
       <orgid>{if (exists($selected)) then string($selected/@entityID) else ()}</orgid>
       <facility/>
       <facilityname/>      
-      <selectedname>{if (exists($selected)) then $selected/csd:primaryName/text() else () }</selectedname>
-      <selectedID>{if (exists($selected)) then string($selected/@entityID) else () }</selectedID>
-      <selectedtext>{$selected_text}</selectedtext>
-      <selectedindex>{$selected_index}</selectedindex>
     </json>
    else <json type='object'/>
 
