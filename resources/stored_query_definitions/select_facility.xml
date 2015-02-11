@@ -23,5 +23,5 @@
     </csd:careServicesRequest>
   </xforms:instance>
   <csd:extension type='rapidpro' urn='urn:openhie.org:openinfoman:adapter'/>
-  <csd:extension type='WebHookGET' urn='urn:openhie.org:openinfoman:adapter:rapidpro:action'/>
+  <csd:extension type='GET' urn='urn:openhie.org:openinfoman:adapter:rapidpro:action'/>
 </csd:careServicesFunction>
