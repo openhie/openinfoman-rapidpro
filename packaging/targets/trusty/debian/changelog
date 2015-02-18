@@ -1,3 +1,11 @@
+openinfoman-rapidpro (1.0.4~trusty) trusty; urgency=medium
+
+  * Release Version 1.0.4
+    -40f0f48 added gitignore
+    --https://github.com/openhie/openinfoman-rapidpro/commmit/40f0f48
+
+ -- Carl Leitner <litlfred@ibiblio.org>  Wed, 18 Feb 2015 19:08:24 +0000
+
 openinfoman-rapidpro (1.0.3~trusty) trusty; urgency=medium
 
   * Release Version 1.0.3
