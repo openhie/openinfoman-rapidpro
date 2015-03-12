@@ -83,8 +83,9 @@ declare
   %rest:query-param("flow","{$flow}")
   %rest:query-param("step","{$step}")
   %rest:query-param("values","{$values}")
-  %rest:produces("application/json")
+  %output:media-type("application/json")
   %rest:POST
+  %rest:GET
   function page:webhook($search_name,$doc_name,$event,$relayer,$relayer_phone,$phone,$flow,$step,$values) 
 {
   if (not(page:is_rapidpro($search_name)) ) 
