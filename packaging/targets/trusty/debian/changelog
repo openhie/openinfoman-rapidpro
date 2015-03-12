@@ -1,3 +1,11 @@
+openinfoman-rapidpro (1.0.9~trusty) trusty; urgency=medium
+
+  * Release Version 1.0.9
+    -ee1789e webhook can be GET or POST, mediatype of webhook is applic
+    --https://github.com/openhie/openinfoman-rapidpro/commmit/ee1789e
+
+ -- Carl Leitner <litlfred@ibiblio.org>  Thu, 12 Mar 2015 19:16:39 +0000
+
 openinfoman-rapidpro (1.0.8~trusty) trusty; urgency=medium
 
   * Release Version 1.0.8
