@@ -1,3 +1,11 @@
+openinfoman-rapidpro (1.0.12~utopic) utopic; urgency=medium
+
+  * Release Version 1.0.12
+    -6f87bf9 fixup tels in json export
+    --https://github.com/openhie/openinfoman-rapidpro/commmit/6f87bf9
+
+ -- Carl Leitner <litlfred@ibiblio.org>  Fri, 17 Apr 2015 15:01:53 -0400
+
 openinfoman-rapidpro (1.0.11~utopic) utopic; urgency=medium
 
   * Release Version 1.0.11
