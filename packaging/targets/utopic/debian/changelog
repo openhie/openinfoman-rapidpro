@@ -1,3 +1,11 @@
+openinfoman-rapidpro (1.0.10~utopic) utopic; urgency=medium
+
+  * Release Version 1.0.10
+    -a5d4924 added export function for dumping to csv for rapidpro
+    --https://github.com/openhie/openinfoman-rapidpro/commmit/a5d4924
+
+ -- Carl Leitner <litlfred@ibiblio.org>  Fri, 17 Apr 2015 14:01:44 -0400
+
 openinfoman-rapidpro (1.0.9~utopic) utopic; urgency=medium
 
   * Release Version 1.0.9
