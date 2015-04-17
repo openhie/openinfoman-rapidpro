@@ -1,3 +1,11 @@
+openinfoman-rapidpro (1.0.13~trusty) trusty; urgency=medium
+
+  * Release Version 1.0.13
+    -84ca7fe lowercase globalid for json
+    --https://github.com/openhie/openinfoman-rapidpro/commmit/84ca7fe
+
+ -- Carl Leitner <litlfred@ibiblio.org>  Fri, 17 Apr 2015 15:15:33 -0400
+
 openinfoman-rapidpro (1.0.12~trusty) trusty; urgency=medium
 
   * Release Version 1.0.12
