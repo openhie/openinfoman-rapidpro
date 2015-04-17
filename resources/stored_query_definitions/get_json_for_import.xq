@@ -38,7 +38,7 @@ let $contacts :=
              { if ($tel_3) then   <_ type='string'>tel:{$tel_3}</_> else ()} 
 	   </urns>
 	   <fields type="object">
-             <Globalid>{$uuid}</Globalid>
+             <globalid>{$uuid}</globalid>
 	   </fields>
          </_>
        else ()
