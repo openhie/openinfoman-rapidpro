@@ -23,9 +23,10 @@ let $contacts :=
       for $provider in  $providers/csd:providerDirectory/csd:provider
       let $uuid := lower-case(string($provider/@entityID))
       let $name := ($provider/csd:demographic/csd:name/csd:commonName)[1]/text()
-      let $tel_1 := $provider/telephone_1/text()
-      let $tel_2 := $provider/telephone_2/text()
-      let $tel_3 := $provider/telephone_3/text()
+      let $tels := $provider/csd:demographic/csd:contactPoint/csd:codedType[@code="BP" and  @codingScheme="urn:ihe:iti:csd:2013:contactPoint"]
+      let $tel_1 := $tels[1]/text()
+      let $tel_2 := $tels[2]/text()
+      let $tel_3 := $tels[3]/text()
       return 
 	if (true()) (:  ($uuid and $name)  :)
        then 
