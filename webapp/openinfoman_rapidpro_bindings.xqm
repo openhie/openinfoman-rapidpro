@@ -44,12 +44,25 @@ declare
       <div>
         <h2>RapidPro Operations on {$doc_name}</h2>
         { 
+          if ($actions = 'get')  
+	  then
+	   <span>
+             <h3>JSON Contacts  -- GET</h3>
+	     {
+	       let $url := concat($csd_webconf:baseurl, "CSD/csr/" , $doc_name , "/careServicesRequest/",$search_name, "/adapter/rapidpro/get")
+	       return <p><a href="{$url}">Get Contacts</a></p>
+	     }
+	   </span>
+	  else ()
+	}
+
+        { 
           if ($actions = 'WebHookGET')  
 	  then
 	   <span>
              <h3>WebHook  -- GET</h3>
 	     {
-	       let $url := concat($csd_webconf:baseurl, "CSD/csr/" , $doc_name , "/careServicesRequest/",$search_name, "/adapter/rap/createDXF")
+	       let $url := concat($csd_webconf:baseurl, "CSD/csr/" , $doc_name , "/careServicesRequest/",$search_name, "/adapter/rapidpro/createDXF")
 	       return <p>WebHook defined at {$url}</p>
 	     }
 	   </span>
@@ -119,6 +132,48 @@ declare
        </csd:function>
       </csd:careServicesRequest>
     return csr_proc:process_CSR_stored_results($csd_webconf:db, $doc,$careServicesRequest)
+};
+
+
+ 
+declare
+  %rest:path("/CSD/csr/{$doc_name}/careServicesRequest/{$search_name}/adapter/rapidpro/get")
+  function page:get($search_name,$doc_name) 
+{
+  if (not(page:is_rapidpro($search_name)) ) 
+    then 
+    <p>
+    {csr_proc:get_function_definition($csd_webconf:db,$search_name)}
+    {(concat('Not a RapidPro Compatible stored function: ', $search_name )    )}
+    </p>
+  else 
+    let $doc :=  csd_dm:open_document($csd_webconf:db,$doc_name)
+    let $function := csr_proc:get_function_definition($csd_webconf:db,$search_name)
+
+    let $careServicesRequest := 
+      <csd:careServicesRequest> 
+       <csd:function urn="{$search_name}" resource="{$doc_name}" base_url="{$csd_webconf:baseurl}">
+         <csd:requestParams/>
+       </csd:function>
+     </csd:careServicesRequest> 
+    let $content := csr_proc:process_CSR_stored_results($csd_webconf:db, $doc,$careServicesRequest) 
+    let $output := $function/@content-type
+    let $mime := 
+      if (exists($output))
+      then string($output)
+      else "text/html"
+    return 
+    ( 
+      <rest:response>
+	<http:response status="200" >
+          <http:header name='Content-Type' value="{$mime}"/>
+	  <http:header name='Content-Disposition' value="attachment; filename='{$doc_name}.json'"/>
+	</http:response>
+      </rest:response>
+      ,$content
+    )
+
+
 };
 
 
