@@ -18,7 +18,7 @@ if ($tok = getenv('RAPIDPRO_AUTH_TOKEN')) {
 }
 
 if ($url = getenv('RAPIDPRO_URL')) {
-    $rapidpro['url'] = $tok;
+    $rapidpro['url'] = $url;
 }
 
 
