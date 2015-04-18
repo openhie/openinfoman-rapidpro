@@ -1,3 +1,11 @@
+openinfoman-rapidpro (1.0.15~trusty) trusty; urgency=medium
+
+  * Release Version 1.0.15
+    -ae3a649 added synchronize service from CSD to RapidPro
+    --https://github.com/openhie/openinfoman-rapidpro/commmit/ae3a649
+
+ -- Carl Leitner <litlfred@ibiblio.org>  Sat, 18 Apr 2015 08:21:45 -0400
+
 openinfoman-rapidpro (1.0.14~trusty) trusty; urgency=medium
 
   * Release Version 1.0.14
