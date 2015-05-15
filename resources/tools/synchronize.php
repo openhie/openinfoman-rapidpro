@@ -3,7 +3,7 @@
 
 
 $openinfoman = array(
-    'url'=>'http://masala:8984/CSD/csr/CSD-Providers-Connectathon-20150120/careServicesRequest/urn:openhie.org:openinfoman-rapidpro:get_json_for_import/adapter/rapidpro/get'
+    'url'=>'http://localhost:8984/CSD/csr/CSD-Providers-Connectathon-20150120/careServicesRequest/urn:openhie.org:openinfoman-rapidpro:get_json_for_import/adapter/rapidpro/get'
     );
 
 $rapidpro= array(
@@ -12,6 +12,9 @@ $rapidpro= array(
     );
 
 
+if ($url = getenv('OPENINFOMAN_URL')) {
+    $openinfoman['url'] = $url;
+}
 
 if ($tok = getenv('RAPIDPRO_AUTH_TOKEN')) {
     $rapidpro['auth_token'] = $tok;
@@ -33,12 +36,11 @@ if (! ($contacts_text = file_get_contents($openinfoman['url']))
     }
     die("Could not do it. Sorry.");
 }
-
 $records = generate_records($contacts_json,$current);
 
 
-
 foreach ($records as $record) {
+
     $data_string = json_encode($record,JSON_NUMERIC_CHECK);
     $ch = curl_init($rapidpro['url'] );
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
@@ -52,9 +54,9 @@ foreach ($records as $record) {
     
     $result = curl_exec($ch);
     $result = json_decode($result,true);
-//    print_r($record);
-//    echo $data_string;
-//    var_dump($result);
+    print_r($record);
+    echo $data_string;
+    var_dump($result);
     if (curl_errno($ch) != 0) {
         var_dump( curl_error($ch));
         var_dump(curl_getinfo($ch));
@@ -71,6 +73,7 @@ die("Could do it.");
 
 function generate_records($contacts_json,$current) {
     $records = array();
+    echo "Generating records for "  . count($contacts_json) . "/" . count($current)  . "\n";
     foreach ($contacts_json as $contact) {
         if (!is_array($contact)
             || !array_key_exists('fields',$contact)
@@ -112,7 +115,7 @@ function generate_records($contacts_json,$current) {
         if (array_key_exists('name',$contact)){
             $record['name']= $contact['name'];
         }
-        unset($record['uuid']);
+        //unset($record['uuid']);
         $record['urns'] = array_values($record['urns']);
         foreach ($record['fields'] as $k=>$v) {
             if (!is_string($v)
