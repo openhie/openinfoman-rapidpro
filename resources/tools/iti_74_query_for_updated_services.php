@@ -9,6 +9,7 @@ $openinfoman = array(
 $rapidpro= array(
     'url' =>'https://rapidpro.io/api/v1/contacts.json',
     'base_url' =>'https://rapidpro.io/',
+    'slug' =>'https://rapidpro.io/',
     'auth_token' => 'xxxxxxxsupersecretxxxxxxxx'
     );
 
@@ -20,6 +21,10 @@ if ($tok = getenv('RAPIDPRO_AUTH_TOKEN')) {
 
 if ($url = getenv('RAPIDPRO_URL')) {
     $rapidpro['url'] = $url;
+}
+
+if ($slug = getenv('RAPIDPRO_SLUG')) {
+    $rapidpro['slug'] = $slug;
 }
 
 
@@ -103,8 +108,10 @@ function generate_entry($rapidpro,$globalid,$records) {
     if (count($names)  == 0) {
         return $out;
     }
-    $out = '    <provider entityID="' . $globalid . '">
+    $out = '    <provider entityID="' . strtolower($globalid) . '">
 ';
+    $out .= "      <otherID code='rapidpro_contact_id' assigningAuthorityName='{$rapidpro['base_url']}{$rapidpro['slug']}'>$uuid</otherID>
+";
     foreach ($group_uuids as $group_uuid) {
         $out .= '      <codedType code="' . $group_uuid . '" codingScheme="' . $rapidpro['base_url'] . '"/>
 ';
@@ -116,9 +123,9 @@ function generate_entry($rapidpro,$globalid,$records) {
     foreach ($names as $name) {
         $out .= '          <commonName>'. $name . '</commonName>
 ';
-        $out .= '        </name>
-';
     }
+    $out .= '        </name>
+';
     foreach ($tels as $tel) {
         $out .= '        <contactPoint><codedType code="BP" codingScheme="urn:ihe:iti:csd:2013:contactPoint">' . $tel .'</codedType></contactPoint>
 ';
@@ -164,8 +171,8 @@ function get_contacts($rapidpro) {
             }
             $contacts[$globalid][] = $result;
         }
-        if (array_key_exists('next',$results)) {
-            $url = $results['next'];
+        if (array_key_exists('next',$contacts_json)) {
+            $url = $contacts_json['next'];
         } else {
             $url = false;
         }
