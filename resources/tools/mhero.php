@@ -4,10 +4,10 @@ Run this script as root                            *
 The script assumes the debian package installation *
 ****************************************************/
 	#####Set variables#####
-	$ihris_user="ihris";
-	$ihris_password="manage";
-	$ihris_url="http://52.18.193.130/manage-demo";
-	$openinfoman_url="http://52.18.193.130:8984/CSD";
+	$ihris_user="ihris-user";
+	$ihris_password="passwd";
+	$ihris_url="http://localhost/manage-demo";
+	$openinfoman_url="http://localhost:8984/CSD";
 	$RAPIDPRO_AUTH_TOKEN="XXX23dd821c514eXXX";
 	$RAPIDPRO_URL="https://app.rapidpro.io/api/v1/contacts.json";
 	$RAPIDPRO_GROUP_NAME="testing";
