@@ -1,7 +1,4 @@
 <?php
-
-
-
 $openinfoman = array(
     'url'=>'http://masala:8984/CSD/csr/CSD-Providers-Connectathon-20150120/careServicesRequest/urn:openhie.org:openinfoman-rapidpro:get_json_for_import/adapter/rapidpro/get'
     );
@@ -10,7 +7,8 @@ $rapidpro= array(
     'url' =>'https://rapidpro.io/api/v1/contacts.json',
     'base_url' =>'https://rapidpro.io/',
     'slug' =>'https://rapidpro.io/',
-    'auth_token' => 'xxxxxxxsupersecretxxxxxxxx'
+    'auth_token' => 'xxxxxxxsupersecretxxxxxxxx',
+    'group_name' => ''
     );
 
 
@@ -27,6 +25,14 @@ if ($slug = getenv('RAPIDPRO_SLUG')) {
     $rapidpro['slug'] = $slug;
 }
 
+if ($group_name = getenv('RAPIDPRO_GROUP_NAME')) {
+    $rapidpro['group_name'] = $group_name;
+}
+
+if ($rapidpro["group_name"]) {
+$group_uuid=get_group_uuid($rapidpro);
+$rapidpro["url"]=$rapidpro["url"]."?group_uuids=".$group_uuid;
+}
 
 if ( ! is_array($contacts = get_contacts($rapidpro))
     ){
@@ -180,4 +186,18 @@ function get_contacts($rapidpro) {
     return $contacts;
 }
 
-
+function get_group_uuid($rapidpro) {
+        $url = $rapidpro["base_url"]."api/v1/groups.json?name=".$rapidpro["group_name"];
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+        curl_setopt($ch, CURLOPT_HTTPHEADER, Array(
+                                                   "Content-Type: application/json",
+                                                   "Authorization: Token ".$rapidpro["auth_token"],
+                                                  ));
+        $output = curl_exec ($ch);
+        $output=json_decode($output,true);
+        curl_close ($ch);
+        return $output["results"][0]["uuid"];
+        }

@@ -1,14 +1,12 @@
 <?php
-
-
-
 $openinfoman = array(
     'url'=>'http://localhost:8984/CSD/csr/CSD-Providers-Connectathon-20150120/careServicesRequest/urn:openhie.org:openinfoman-rapidpro:get_json_for_import/adapter/rapidpro/get'
     );
 
 $rapidpro= array(
     'url' =>'https://rapidpro.io/api/v1/contacts.json',
-    'auth_token' => 'xxxxxxxsupersecretxxxxxxxx'
+    'auth_token' => 'xxxxxxxsupersecretxxxxxxxx',
+    'group_name' => '',
     );
 
 
@@ -24,6 +22,9 @@ if ($url = getenv('RAPIDPRO_URL')) {
     $rapidpro['url'] = $url;
 }
 
+if ($group_name = getenv('RAPIDPRO_GROUP_NAME')) {
+    $rapidpro['group_name'] = $group_name;
+}
 
 if (! ($contacts_text = file_get_contents($openinfoman['url']))
     || ! is_array($contacts_json_full = json_decode($contacts_text,true))
@@ -36,7 +37,7 @@ if (! ($contacts_text = file_get_contents($openinfoman['url']))
     }
     die("Could not do it. Sorry.");
 }
-$records = generate_records($contacts_json,$current);
+$records = generate_records($contacts_json,$current,$rapidpro);
 
 
 foreach ($records as $record) {
@@ -71,7 +72,7 @@ if (array_key_exists('HTTP_HOST',$_SERVER)) {
 die("Could do it.");
 
 
-function generate_records($contacts_json,$current) {
+function generate_records($contacts_json,$current,$rapidpro) {
     $records = array();
     echo "Generating records for "  . count($contacts_json) . "/" . count($current)  . "\n";
     foreach ($contacts_json as $contact) {
@@ -116,6 +117,8 @@ function generate_records($contacts_json,$current) {
             $record['name']= $contact['name'];
         }
         //unset($record['uuid']);
+	if($rapidpro["group_name"])
+	$record['groups'] = array($rapidpro["group_name"]);
         $record['urns'] = array_values($record['urns']);
         foreach ($record['fields'] as $k=>$v) {
             if (!is_string($v)
