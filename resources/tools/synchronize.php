@@ -41,7 +41,8 @@ $records = generate_records($contacts_json,$current,$rapidpro);
 
 
 foreach ($records as $record) {
-
+    if(array_key_exists("group_uuids",$record))
+    unset($record["groups"]);    
     $data_string = json_encode($record,JSON_NUMERIC_CHECK);
     $ch = curl_init($rapidpro['url'] );
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
