@@ -2,6 +2,7 @@ module namespace page = 'http://basex.org/modules/web-page';
 
 (:Import other namespaces.  :)
 import module namespace csd_webconf =  "https://github.com/openhie/openinfoman/csd_webconf";
+import module namespace csd_webui =  "https://github.com/openhie/openinfoman/csd_webui";
 import module namespace csr_proc = "https://github.com/openhie/openinfoman/csr_proc";
 import module namespace csd_dm = "https://github.com/openhie/openinfoman/csd_dm";
 import module namespace csd_mcs = "https://github.com/openhie/openinfoman/csd_mcs";
@@ -49,7 +50,7 @@ declare
 	   <span>
              <h3>JSON Contacts  -- GET</h3>
 	     {
-	       let $url := concat($csd_webconf:baseurl, "CSD/csr/" , $doc_name , "/careServicesRequest/",$search_name, "/adapter/rapidpro/get")
+	       let $url := csd_webui:generateURL( "CSD/csr/" , $doc_name , "/careServicesRequest/",$search_name, "/adapter/rapidpro/get")
 	       return <p><a href="{$url}">Get Contacts</a></p>
 	     }
 	   </span>
@@ -62,7 +63,7 @@ declare
 	   <span>
              <h3>WebHook  -- GET</h3>
 	     {
-	       let $url := concat($csd_webconf:baseurl, "CSD/csr/" , $doc_name , "/careServicesRequest/",$search_name, "/adapter/rapidpro/createDXF")
+	       let $url := csd_webui:generateURL( "CSD/csr/" , $doc_name , "/careServicesRequest/",$search_name, "/adapter/rapidpro/createDXF")
 	       return <p>WebHook defined at {$url}</p>
 	     }
 	   </span>
@@ -74,7 +75,7 @@ declare
 	   <span>
              <h3>WebHook  -- POST</h3>
 	     {
-	       let $url := concat($csd_webconf:baseurl, "CSD/csr/" , $doc_name , "/careServicesRequest/",$search_name, "/adapter/rap/createDXF")
+	       let $url := csd_webui:generateURL( "CSD/csr/" , $doc_name , "/careServicesRequest/",$search_name, "/adapter/rap/createDXF")
 	       return <p>WebHook defined at {$url}</p>
 	     }
 	   </span>
@@ -82,7 +83,7 @@ declare
 	}
 
       </div>
-      return csd_webconf:wrapper($contents)
+      return csd_webui:wrapper($contents)
 };
 
 
@@ -109,7 +110,7 @@ declare
 
     let $careServicesRequest := 
       <csd:careServicesRequest>
-       <csd:function urn="{$search_name}" resource="{$doc_name}" base_url="{$csd_webconf:baseurl}">
+       <csd:function urn="{$search_name}" resource="{$doc_name}" base_url="{csd_webui:generateURL()}">
          <csd:requestParams >
 	   <event type="{$event}"/>
 	   <relayer id="{$relayer}"/>
@@ -152,7 +153,7 @@ declare
 
     let $careServicesRequest := 
       <csd:careServicesRequest> 
-       <csd:function urn="{$search_name}" resource="{$doc_name}" base_url="{$csd_webconf:baseurl}">
+       <csd:function urn="{$search_name}" resource="{$doc_name}" base_url="{csd_webui:generateURL()}">
          <csd:requestParams/>
        </csd:function>
      </csd:careServicesRequest> 
