@@ -1,3 +1,27 @@
+openinfoman-rapidpro (1.0.16~trusty) trusty; urgency=medium
+
+  * Release Version 1.0.16
+    -0bc209e webui API updates
+    --http://github.com/openhie/openinfoman-rapidpro/commmit/0bc209e
+    -b6c78d1 fixed a bug,parameter groups and group_uuids cant be used
+    --http://github.com/openhie/openinfoman-rapidpro/commmit/b6c78d1
+    -485b845 Added ability to push and pull contacts to a specific Rapi
+    --http://github.com/openhie/openinfoman-rapidpro/commmit/485b845
+    -59d8263 Making IP anonimous
+    --http://github.com/openhie/openinfoman-rapidpro/commmit/59d8263
+    -1d9f98b Added an autosync script between iHRIS,OIM and RapidPro
+    --http://github.com/openhie/openinfoman-rapidpro/commmit/1d9f98b
+    -4d2fa75 iti-74 now puts in the rapidpro id as an otherID.  assigni
+    --http://github.com/openhie/openinfoman-rapidpro/commmit/4d2fa75
+    -1268c3f added stored query to check cellcom and lonestar statisitc
+    --http://github.com/openhie/openinfoman-rapidpro/commmit/1268c3f
+    -6ab9eae sync script lets setting openinfoman url using OPENINFOMAN
+    --http://github.com/openhie/openinfoman-rapidpro/commmit/6ab9eae
+    -cc94bfb added php script that acts as a facade in front of RapidPr
+    --http://github.com/openhie/openinfoman-rapidpro/commmit/cc94bfb
+
+ -- Carl Leitner <litlfred@ibiblio.org>  Mon, 18 Jan 2016 22:44:00 -0500
+
 openinfoman-rapidpro (1.0.15~trusty) trusty; urgency=medium
 
   * Release Version 1.0.15
