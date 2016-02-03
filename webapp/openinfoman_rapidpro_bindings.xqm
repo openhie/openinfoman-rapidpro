@@ -50,7 +50,7 @@ declare
 	   <span>
              <h3>JSON Contacts  -- GET</h3>
 	     {
-	       let $url := csd_webui:generateURL( "CSD/csr/" , $doc_name , "/careServicesRequest/",$search_name, "/adapter/rapidpro/get")
+	       let $url := csd_webui:generateURL(("CSD/csr/" , $doc_name , "/careServicesRequest/",$search_name, "/adapter/rapidpro/get"))
 	       return <p><a href="{$url}">Get Contacts</a></p>
 	     }
 	   </span>
@@ -63,7 +63,7 @@ declare
 	   <span>
              <h3>WebHook  -- GET</h3>
 	     {
-	       let $url := csd_webui:generateURL( "CSD/csr/" , $doc_name , "/careServicesRequest/",$search_name, "/adapter/rapidpro/createDXF")
+	       let $url := csd_webui:generateURL(("CSD/csr/" , $doc_name , "/careServicesRequest/",$search_name, "/adapter/rapidpro/createDXF"))
 	       return <p>WebHook defined at {$url}</p>
 	     }
 	   </span>
@@ -75,7 +75,7 @@ declare
 	   <span>
              <h3>WebHook  -- POST</h3>
 	     {
-	       let $url := csd_webui:generateURL( "CSD/csr/" , $doc_name , "/careServicesRequest/",$search_name, "/adapter/rap/createDXF")
+	       let $url := csd_webui:generateURL(("CSD/csr/" , $doc_name , "/careServicesRequest/",$search_name, "/adapter/rap/createDXF"))
 	       return <p>WebHook defined at {$url}</p>
 	     }
 	   </span>
