@@ -1,6 +1,8 @@
 <?php
 $openinfoman = array(
-    'url'=>'http://localhost:8984/CSD/csr/CSD-Providers-Connectathon-20150120/careServicesRequest/urn:openhie.org:openinfoman-rapidpro:get_json_for_import/adapter/rapidpro/get'
+    'url'=>'http://localhost:5001/CSD/csr/CSD-Providers-Connectathon-20150120/careServicesRequest/urn:openhie.org:openinfoman-rapidpro:get_json_for_import/adapter/rapidpro/get',
+    'username'=>'oim',
+    'password'=>'oim'
     );
 
 $rapidpro= array(
@@ -26,7 +28,12 @@ if ($group_name = getenv('RAPIDPRO_GROUP_NAME')) {
     $rapidpro['group_name'] = $group_name;
 }
 
-if (! ($contacts_text = file_get_contents($openinfoman['url']))
+$context = stream_context_create(array(
+    'http' => array(
+        'header'  => "Authorization: Basic " . base64_encode($openinfoman['username'].":".$openinfoman['password'])
+    )
+));
+if (! ($contacts_text = file_get_contents($openinfoman['url'],false,$context))
     || ! is_array($contacts_json_full = json_decode($contacts_text,true))
     || ! array_key_exists('contacts',$contacts_json_full)
     || ! is_array($contacts_json = $contacts_json_full['contacts'])
