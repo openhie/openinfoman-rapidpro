@@ -9,8 +9,10 @@ are set wit the export command should be set directly to the       *
 	#####Set variables#####
 	$ihris_user="ihris";
 	$ihris_password="manage";
+	$openinfoman_user="oim";
+	$openinfoman_password="oim";
 	$ihris_url="http://localhost/manage-demo";
-	$openinfoman_url="http://localhost:8984/CSD";
+	$openinfoman_url="http://localhost:5001/CSD";
 	$RAPIDPRO_AUTH_TOKEN="XXX23dd821c514eXXX";
 	$RAPIDPRO_URL="https://app.rapidpro.io/api/v1/contacts.json";
 	$RAPIDPRO_GROUP_NAME="testing";
@@ -39,7 +41,7 @@ are set wit the export command should be set directly to the       *
 	
 	#####Pull any new iHRIS contacts into openinfoman#####
 	$doc=str_replace(".xml","",$ihris_oim_service_dir);
-	exec("curl $openinfoman_url/pollService/directory/$doc/update_cache");
+	exec("curl -u $openinfoman_user:$openinfoman_password $openinfoman_url/pollService/directory/$doc/update_cache");
 	#####End of pulling any new iHRIS contacts into openinfoman#####
 
 	#####Start pushing iHRIS contacts to Rapidpro#####
