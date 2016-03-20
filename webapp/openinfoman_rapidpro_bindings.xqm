@@ -15,14 +15,14 @@ declare namespace csd = "urn:ihe:iti:csd:2013";
 
 
 declare function page:is_rapidpro($search_name) {
-  let $function := csr_proc:get_function_definition($csd_webconf:db,$search_name)
+  let $function := csr_proc:get_function_definition($search_name)
   let $ext := $function//csd:extension[  @urn='urn:openhie.org:openinfoman:adapter' and @type='rapidpro']
   return (count($ext) > 0) 
 };
 
 
 declare function page:get_actions($search_name) {
-  let $function := csr_proc:get_function_definition($csd_webconf:db,$search_name)
+  let $function := csr_proc:get_function_definition($search_name)
   return 
     (
     for $act in $function//csd:extension[  @urn='urn:openhie.org:openinfoman:adapter:rapidpro:action']/@type
@@ -105,8 +105,8 @@ declare
   if (not(page:is_rapidpro($search_name)) ) 
     then ('Not a RapidPro Compatible stored function'    )
   else 
-    let $doc :=  csd_dm:open_document($csd_webconf:db,$doc_name)
-    let $function := csr_proc:get_function_definition($csd_webconf:db,$search_name)
+    let $doc :=  csd_dm:open_document($doc_name)
+    let $function := csr_proc:get_function_definition($search_name)
 
     let $careServicesRequest := 
       <csd:careServicesRequest>
@@ -132,7 +132,7 @@ declare
          </csd:requestParams>
        </csd:function>
       </csd:careServicesRequest>
-    return csr_proc:process_CSR_stored_results($csd_webconf:db, $doc,$careServicesRequest)
+    return csr_proc:process_CSR_stored_results( $doc,$careServicesRequest)
 };
 
 
@@ -144,12 +144,12 @@ declare
   if (not(page:is_rapidpro($search_name)) ) 
     then 
     <p>
-    {csr_proc:get_function_definition($csd_webconf:db,$search_name)}
+    {csr_proc:get_function_definition($search_name)}
     {(concat('Not a RapidPro Compatible stored function: ', $search_name )    )}
     </p>
   else 
-    let $doc :=  csd_dm:open_document($csd_webconf:db,$doc_name)
-    let $function := csr_proc:get_function_definition($csd_webconf:db,$search_name)
+    let $doc :=  csd_dm:open_document($doc_name)
+    let $function := csr_proc:get_function_definition($search_name)
 
     let $careServicesRequest := 
       <csd:careServicesRequest> 
@@ -157,7 +157,7 @@ declare
          <csd:requestParams/>
        </csd:function>
      </csd:careServicesRequest> 
-    let $content := csr_proc:process_CSR_stored_results($csd_webconf:db, $doc,$careServicesRequest) 
+    let $content := csr_proc:process_CSR_stored_results( $doc,$careServicesRequest) 
     let $output := $function/@content-type
     let $mime := 
       if (exists($output))

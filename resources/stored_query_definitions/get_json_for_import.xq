@@ -13,7 +13,7 @@ let $careServicesSubRequest :=
     </csd:function>
   </csd:careServicesRequest> 
 
-let $providers := csr_proc:process_CSR_stored_results($csd_webconf:db, /. , $careServicesSubRequest)
+let $providers := csr_proc:process_CSR_stored_results( /. , $careServicesSubRequest)
 
 
 let $contacts :=  
