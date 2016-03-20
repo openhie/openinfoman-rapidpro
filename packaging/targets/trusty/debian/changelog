@@ -1,3 +1,9 @@
+openinfoman-rapidpro (1.2.1~trusty) trusty; urgency=medium
+
+  * Release Version 1.2.1
+
+ -- Carl Leitner <litlfred@ibiblio.org>  Sun, 20 Mar 2016 18:40:22 +0000
+
 openinfoman-rapidpro (1.1.2~trusty) trusty; urgency=medium
 
   * Release Version 1.1.2
