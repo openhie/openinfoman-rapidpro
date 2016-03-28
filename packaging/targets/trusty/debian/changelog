@@ -1,3 +1,11 @@
+openinfoman-rapidpro (1.2.2~trusty) trusty; urgency=medium
+
+  * Release Version 1.2.2
+    -3a82ad1 fixup csd_webconf references
+    --http://github.com/openhie/openinfoman-rapidpro/commmit/3a82ad1
+
+ -- Carl Leitner <litlfred@ibiblio.org>  Mon, 28 Mar 2016 02:03:31 +0000
+
 openinfoman-rapidpro (1.2.1~trusty) trusty; urgency=medium
 
   * Release Version 1.2.1
