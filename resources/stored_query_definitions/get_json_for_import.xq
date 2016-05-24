@@ -7,10 +7,8 @@ declare variable $careServicesRequest as item() external;
 
 
 let $careServicesSubRequest :=  
-  <csd:careServicesRequest>
-    <csd:function  urn="urn:ihe:iti:csd:2014:stored-function:provider-search" >
-      <csd:requestParams/>
-    </csd:function>
+  <csd:careServicesRequest  urn="urn:ihe:iti:csd:2014:stored-function:provider-search" >
+    <csd:requestParams/>
   </csd:careServicesRequest> 
 
 let $providers := csr_proc:process_CSR_stored_results( /. , $careServicesSubRequest)
