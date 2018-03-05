@@ -4,10 +4,10 @@ $openinfoman = array(
     );
 
 $rapidpro= array(
-    'url' =>'https://rapidpro.io/api/v1/contacts.json',
-    'base_url' =>'https://rapidpro.io/',
-    'slug' =>'https://rapidpro.io/',
-    'auth_token' => 'xxxxxxxsupersecretxxxxxxxx',
+    'url' =>'http://192.168.43.241:8000/api/v2/contacts.json',
+    'base_url' =>'http://192.168.43.241:8000/',
+    'slug' =>'moh',
+    'auth_token' => 'f69ee75ccad4c86f5470eddc048832ed48d20c7d',
     'group_name' => ''
     );
 
