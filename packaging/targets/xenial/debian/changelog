@@ -1,3 +1,13 @@
+openinfoman-rapidpro (1.2.3~xenial) xenial; urgency=medium
+
+  * Release Version 1.2.3
+    -2e169d9 packaging for 16.04
+    --https://github.com/openhie/openinfoman-rapidpro/commmit/2e169d9
+    -6cdff08 pakaging for ubuntu 16.04
+    --https://github.com/openhie/openinfoman-rapidpro/commmit/6cdff08
+
+ -- Carl Leitner <litlfred@ibiblio.org>  Fri, 13 Apr 2018 07:47:24 +0000
+
 openinfoman-rapidpro (1.2.2~trusty) trusty; urgency=medium
 
   * Release Version 1.2.2
